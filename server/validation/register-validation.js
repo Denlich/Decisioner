@@ -1,0 +1,12 @@
+import { body } from "express-validator";
+
+export const registerValidation = [
+  body("name", "Input name").isString().isLength({ min: 3, max: 20 }),
+  body("surname", "Input surname").isString().isLength({ min: 3, max: 20 }),
+  body("nickname", "Nickname must be at least 3 characters and no more than 20")
+    .isString()
+    .isLength({ min: 3, max: 20 }),
+  body("password", "Password must be at least 5 characters long")
+    .isString()
+    .isLength({ min: 5 }),
+];

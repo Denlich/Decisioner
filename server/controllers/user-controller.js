@@ -9,7 +9,7 @@ export const register = async (req, res) => {
       nickname,
       password
     );
-    return res.json({ userData });
+    return res.json({ ...userData });
   } catch (e) {
     res.status(400).json({ message: e.message });
   }
@@ -19,7 +19,7 @@ export const login = async (req, res) => {
   try {
     const { nickname, password } = req.body;
     const userData = await UserService.login(nickname, password);
-    res.json({ userData });
+    res.json({ ...userData });
   } catch (e) {
     console.log(e);
     res.status(400).json({ message: e.message });
