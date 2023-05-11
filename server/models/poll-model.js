@@ -21,6 +21,12 @@ const pollSchema = new Schema({
   subtitle: String,
   variants: {
     type: [variantSchema],
+    validate: {
+      validator: (v) => {
+        return v.length > 1 && v.length <= 10;
+      },
+      message: "Min amount of variants - 2, max - 10",
+    },
     required: true,
   },
   user: {

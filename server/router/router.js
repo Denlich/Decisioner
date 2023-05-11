@@ -1,6 +1,10 @@
 import { Router } from "express";
 import { UserController, PollController } from "../controllers/index.js";
-import { registerValidation, loginValidation } from "../validation/index.js";
+import {
+  registerValidation,
+  loginValidation,
+  pollValidation,
+} from "../validation/index.js";
 import checkAuth from "../middleware/checkAuth.js";
 import handleValidationErrors from "../middleware/handleValidationErrors.js";
 
@@ -20,7 +24,7 @@ router.post(
 );
 
 router.get("/polls", PollController.getAll);
-router.post("/polls", checkAuth, PollController.createPoll);
+router.post("/polls", checkAuth, pollValidation, PollController.createPoll);
 router.post("/polls/:id/:variant", checkAuth, PollController.vote);
 
 export default router;

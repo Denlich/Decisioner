@@ -7,7 +7,7 @@ export const getAll = async (req, res) => {
     return res.status(200).json(polls);
   } catch (err) {
     console.log(err);
-    return res.status(500).jso(err.message);
+    return res.status(500).json(err.message);
   }
 };
 
