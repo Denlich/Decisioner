@@ -13,35 +13,44 @@ const variantSchema = new Schema({
   },
 });
 
-const pollSchema = new Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  subtitle: String,
-  variants: {
-    type: [variantSchema],
-    validate: {
-      validator: (v) => {
-        return v.length > 1 && v.length <= 10;
-      },
-      message: "Min amount of variants - 2, max - 10",
+const pollSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
     },
-    required: true,
+    subtitle: String,
+    variants: {
+      type: [variantSchema],
+      validate: {
+        validator: (v) => {
+          return v.length > 1 && v.length <= 10;
+        },
+        message: "Min amount of variants - 2, max - 10",
+      },
+      required: true,
+    },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    voted_users: {
+      type: [Schema.Types.ObjectId],
+      defaul: [],
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+    viewsCount: {
+      type: Number,
+      default: 0,
+    },
   },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-  voted_users: {
-    type: [Schema.Types.ObjectId],
-    defaul: [],
-  },
-  isActive: {
-    type: Boolean,
-    default: true,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 export default model("Poll", pollSchema);

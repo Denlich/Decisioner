@@ -11,6 +11,31 @@ export const getAll = async (req, res) => {
   }
 };
 
+export const getOne = async (req, res) => {
+  try {
+    const pollId = req.params.id;
+
+    pollModel
+      .findOneAndUpdate(
+        { _id: pollId },
+        { $inc: { viewsCount: 1 } },
+        { returnDocument: "after" }
+      )
+      .populate("user")
+      .then((doc) => {
+        res.json(doc);
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          message: "Не удалось вернуть статью",
+        });
+      });
+  } catch (err) {
+    console.log(err.message);
+    res.json(err.message);
+  }
+};
+
 export const createPoll = async (req, res) => {
   try {
     const { title, subtitle, variants } = req.body;
