@@ -1,9 +1,9 @@
 export default class UserDto {
   nickname;
-  id;
+  _id;
 
   constructor(model) {
     this.nickname = model.nickname;
-    this.id = model.id;
+    this._id = model._id;
   }
 }

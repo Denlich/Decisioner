@@ -1,22 +1,24 @@
 import { Router } from "express";
-import * as UserController from "../controllers/user-controller.js";
-import { registerValidation } from "../validation/register-validation.js";
-import { loginValidation } from "../validation/login-validation.js";
-import handleValidationErrrors from "../middleware/handleValidationErrrors.js";
+import { UserController, PollController } from "../controllers/index.js";
+import { registerValidation, loginValidation } from "../validation/index.js";
+import checkAuth from "../middleware/checkAuth.js";
+import handleValidationErrors from "../middleware/handleValidationErrors.js";
 
 const router = new Router();
 
 router.post(
   "/register",
   registerValidation,
-  handleValidationErrrors,
+  handleValidationErrors,
   UserController.register
 );
 router.post(
   "/login",
   loginValidation,
-  handleValidationErrrors,
+  handleValidationErrors,
   UserController.login
 );
+
+router.post("/create-poll", checkAuth, PollController.createPoll);
 
 export default router;

@@ -1,9 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
 import router from "./router/router.js";
 
 const PORT = process.env.PORT || 8080;
+dotenv.config();
 
 const app = express();
 
@@ -13,9 +15,7 @@ app.use("/api", router);
 const start = async (req, res) => {
   try {
     await mongoose
-      .connect(
-        "mongodb+srv://denlich:gjauPuZjDRH6Bu25@cluster0.kvxy8v7.mongodb.net/?retryWrites=true&w=majority"
-      )
+      .connect(process.env.MONGODB)
       .then(() => console.log("Connected to db..."))
       .catch((err) => console.log("Couldn't connect to db...", err));
 
