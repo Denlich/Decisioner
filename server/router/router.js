@@ -21,5 +21,6 @@ router.post(
 
 router.get("/polls", PollController.getAll);
 router.post("/polls", checkAuth, PollController.createPoll);
+router.post("/polls/:id/:variant", checkAuth, PollController.vote);
 
 export default router;

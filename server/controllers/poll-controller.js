@@ -1,4 +1,5 @@
 import pollModel from "../models/poll-model.js";
+import * as PollService from "../services/poll-service.js";
 
 export const getAll = async (req, res) => {
   try {
@@ -23,5 +24,17 @@ export const createPoll = async (req, res) => {
   } catch (err) {
     console.log(err.message);
     return res.status(500).json(err.message);
+  }
+};
+
+export const vote = async (req, res) => {
+  try {
+    const { id, variant } = req.params;
+    const userId = req.userId;
+    const result = await PollService.vote(id, variant, userId);
+    return res.status(200).json(result);
+  } catch (err) {
+    console.log(err.message);
+    res.json(err.message);
   }
 };
