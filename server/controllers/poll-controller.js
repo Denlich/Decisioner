@@ -38,3 +38,15 @@ export const vote = async (req, res) => {
     res.json(err.message);
   }
 };
+
+export const remove = async (req, res) => {
+  try {
+    const id = req.params.id;
+    pollModel
+      .findOneAndDelete({ _id: id })
+      .then((poll) => res.json({ success: true }));
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json("Could not find a poll");
+  }
+};
