@@ -13,10 +13,10 @@ export const register = async (name, surname, nickname, password) => {
   const salt = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(password, salt);
 
-  const user = userModel.create({
-    name: name,
-    surname: surname,
-    nickname: nickname,
+  const user = await userModel.create({
+    name,
+    surname,
+    nickname,
     password: hashPassword,
   });
 

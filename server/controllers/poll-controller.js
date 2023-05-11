@@ -21,7 +21,7 @@ export const getOne = async (req, res) => {
         { $inc: { viewsCount: 1 } },
         { returnDocument: "after" }
       )
-      .populate("user")
+      .populate("user", "-password")
       .then((doc) => {
         res.json(doc);
       })
