@@ -75,3 +75,27 @@ export const remove = async (req, res) => {
     res.status(500).json("Could not find a poll");
   }
 };
+
+export const update = async (req, res) => {
+  try {
+    const { title, subtitle, variants } = req.body;
+    const pollId = req.params.id;
+
+    await pollModel.findOneAndUpdate(
+      { _id: pollId },
+      {
+        title,
+        subtitle,
+        variants,
+        user: req.userId,
+      }
+    );
+
+    res.json({
+      success: true,
+    });
+  } catch (err) {
+    console.log(err.message);
+    res.json(err.message);
+  }
+};
