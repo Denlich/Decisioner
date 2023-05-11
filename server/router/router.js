@@ -19,6 +19,7 @@ router.post(
   UserController.login
 );
 
-router.post("/create-poll", checkAuth, PollController.createPoll);
+router.get("/polls", PollController.getAll);
+router.post("/polls", checkAuth, PollController.createPoll);
 
 export default router;
