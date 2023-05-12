@@ -2,8 +2,13 @@ import pollModel from "../models/poll-model.js";
 
 export const vote = async (id, variant, userId) => {
   const poll = await pollModel.findOne({ _id: id });
+
   if (!poll) {
     throw new Error("Not found");
+  }
+
+  if (!poll.isActive) {
+    throw new Error("Poll is closed");
   }
 
   if (poll.voted_users.includes(userId)) {
