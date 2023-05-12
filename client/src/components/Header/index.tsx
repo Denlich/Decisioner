@@ -3,16 +3,18 @@ import Heading from "../Heading";
 import UserIcon from "../UserIcon";
 import SearchBox from "./SearchBox";
 
-import "./index.module.css";
+import styles from "./index.module.css";
 
-const Navbar = () => {
+const Header = () => {
   return (
-    <nav style={{ background: colours.lightGrey }}>
+    <header style={{ background: colours.lightGrey }}>
       <Heading>Decisioner</Heading>
       <SearchBox />
-      <UserIcon />
-    </nav>
+      <div className={styles.rightPart}>
+        <UserIcon />
+      </div>
+    </header>
   );
 };
 
-export default Navbar;
+export default Header;

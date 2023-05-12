@@ -1,20 +1,20 @@
-nav {
-  display: flex;
-  justify-content: space-between;
+header {
+  display: grid;
   align-items: center;
+  grid-template-columns: 1fr 3fr 1fr;
+  column-gap: 15px;
   padding-block: 15px;
-  padding-inline: 50px;
 }
 
 form {
   display: flex;
-  width: 50%;
+  width: 100%;
   border-radius: 15px;
   overflow: hidden;
   border-radius: 10px;
 }
 
-button {
+.button {
   background-color: #fff;
   border: none;
   padding: 15px
@@ -25,4 +25,9 @@ input[type="search"] {
   background-color: #fff;
   color: #666;
   border: none;
+}
+
+.rightPart {
+  display: flex;
+  justify-content: flex-end;
 }
