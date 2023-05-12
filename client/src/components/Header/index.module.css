@@ -1,0 +1,28 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 15px;
+  padding-inline: 50px;
+}
+
+form {
+  display: flex;
+  width: 50%;
+  border-radius: 15px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+button {
+  background-color: #fff;
+  border: none;
+  padding: 15px
+}
+
+input[type="search"] {
+  flex: 1;
+  background-color: #fff;
+  color: #666;
+  border: none;
+}
