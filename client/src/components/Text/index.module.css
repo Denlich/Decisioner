@@ -1,0 +1,19 @@
+.text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+.black {
+  color: #000;
+}
+
+.grey {
+  color: #666
+}
+
+.white {
+  color: #fff
+}

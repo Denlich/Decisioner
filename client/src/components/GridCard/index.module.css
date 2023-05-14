@@ -1,0 +1,22 @@
+.container {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.h2 {
+  font-family: 'Nunit', sans-serif;
+  color: #00C792;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+.textContainer {
+  margin-bottom: 15px
+}
