@@ -5,14 +5,14 @@ import styles from "./index.module.css";
 
 interface Props {
   icon: IconType;
-  text: string | number;
+  children: string | number;
 }
 
-const index = ({ icon: Icon, text }: Props) => {
+const index = ({ icon: Icon, children }: Props) => {
   return (
     <div className={styles.row}>
       <Icon color="#666" />
-      <Text color="grey">{text}</Text>
+      <Text color="grey">{children}</Text>
     </div>
   );
 };

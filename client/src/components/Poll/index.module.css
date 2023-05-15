@@ -1,0 +1,13 @@
+.poll {
+  display: grid;
+  row-gap: 15px;
+  margin-bottom: 15px;
+}
+
+.variant {
+  display: flex;
+  align-items: center;
+  background-color: #F5F8FB;
+  padding: 5px;
+  border-radius: 10px;
+}

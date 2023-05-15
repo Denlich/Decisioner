@@ -11,8 +11,8 @@ interface Props {
 const Footer = ({ nickname, viewsCount }: Props) => {
   return (
     <footer className={styles.footer}>
-      <StyledInfo icon={BsPerson} text={nickname} />
-      <StyledInfo icon={BsEye} text={viewsCount} />
+      <StyledInfo icon={BsPerson}>{nickname}</StyledInfo>
+      <StyledInfo icon={BsEye}>{viewsCount}</StyledInfo>
     </footer>
   );
 };

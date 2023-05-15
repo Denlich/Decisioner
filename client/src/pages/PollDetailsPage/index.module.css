@@ -1,0 +1,36 @@
+.container {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex {
+  display: flex;
+  margin-top: 10px;
+}
+
+.flex > div:nth-child(2) {
+  margin-inline: 25px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.right > button {
+  margin-right: 25px;
+}
+
+.heading {
+  margin-block: 25px;
+}
+
+.subtitle {
+  margin-block: 50px;
+}
