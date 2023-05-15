@@ -1,3 +1,5 @@
+import User from "./User";
+
 interface Varinats {
   text: string;
   votes: number;
@@ -8,7 +10,8 @@ export default interface Poll {
   title: string;
   subtitle: string;
   vaiants: Varinats[];
-  user_id: string;
+  user: User;
   isAcitve: boolean;
-  viewCount: number;
+  viewsCount: number;
+  createdAt: Date;
 }

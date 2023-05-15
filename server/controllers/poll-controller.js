@@ -3,7 +3,7 @@ import * as PollService from "../services/poll-service.js";
 
 export const getAll = async (req, res) => {
   try {
-    const polls = await pollModel.find();
+    const polls = await pollModel.find().populate("user", "-password");
     return res.status(200).json(polls);
   } catch (err) {
     console.log(err);

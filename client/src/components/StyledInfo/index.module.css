@@ -1,0 +1,7 @@
+.row {
+  display: flex;
+}
+
+.row > svg {
+  margin-right: 10px
+}

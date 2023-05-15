@@ -8,7 +8,7 @@ interface Props {
 const Header = ({ id }: Props) => {
   return (
     <div className={styles.row}>
-      <Subheading>{id.substring(0, 10)}</Subheading>
+      <Subheading>#{id.substring(0, 10)}</Subheading>
     </div>
   );
 };

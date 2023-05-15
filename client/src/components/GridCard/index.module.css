@@ -2,6 +2,9 @@
   background-color: #fff;
   padding: 25px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  min-height: 250px;
 }
 
 .row {
@@ -19,4 +22,11 @@
 
 .textContainer {
   margin-bottom: 15px
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 15px;
 }
