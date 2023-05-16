@@ -3,7 +3,7 @@ import PollHeading from "./PollHeading";
 import Text from "../../components/Text";
 import Poll from "../../components/Poll";
 import Button from "../../components/Button";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import styles from "./index.module.css";
 import usePoll from "../../hooks/usePoll";
@@ -12,6 +12,7 @@ const PollDetailsPage = () => {
   const { id } = useParams();
   console.log(id);
   const { data, isLoading, error } = usePoll(id!);
+  console.log(data);
 
   if (isLoading) {
     return <h1>Loading</h1>;
@@ -29,7 +30,7 @@ const PollDetailsPage = () => {
         viewsCount={data.viewsCount}
       />
       <div className={styles.subtitle}>
-        <Text color="grey">123333333333333333333333333333333333333333</Text>
+        <Text color="grey">{data.subtitle}</Text>
       </div>
       <Poll variants={data.variants} />
       <Button onClick={() => {}}>Vote</Button>

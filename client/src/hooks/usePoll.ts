@@ -8,7 +8,6 @@ const usePoll = (id: string) => {
   return useQuery({
     queryKey: ["poll", id],
     queryFn: () => apiClient.get(id),
-    staleTime: 24 * 60 * 60 * 1000,
   });
 };
 

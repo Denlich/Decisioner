@@ -20,8 +20,8 @@ const PollHeading = ({ title, date, user, viewsCount }: Props) => {
         <StyledInfo icon={BsClock}>
           <Time date={date} />
         </StyledInfo>
-        <StyledInfo icon={BsPerson}>Denlich</StyledInfo>
-        <StyledInfo icon={BsEye}>21</StyledInfo>
+        <StyledInfo icon={BsPerson}>{user}</StyledInfo>
+        <StyledInfo icon={BsEye}>{viewsCount}</StyledInfo>
       </div>
     </div>
   );
