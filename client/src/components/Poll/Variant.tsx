@@ -7,7 +7,7 @@ import styles from "./index.module.css";
 interface Props {
   children: string;
   isActive?: string;
-  setActive: (p: string) => void;
+  setActive?: (p: string) => void;
   id: string;
 }
 
@@ -15,7 +15,7 @@ const Variant = ({ children, isActive, setActive, id }: Props) => {
   return (
     <div className={styles.variant}>
       <Button
-        onClick={() => setActive(id)}
+        onClick={setActive ? () => setActive(id) : () => {}}
         color={isActive === id ? "#0066F1" : "#666"}
         bg="white"
         icon={BsCheck}

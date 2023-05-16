@@ -1,0 +1,13 @@
+.row {
+  display: flex;
+  align-items: center;
+  margin-block: 15px
+}
+
+.row > p {
+  margin-inline: 25px;
+}
+
+.pb25 {
+  padding-block: 25px
+}

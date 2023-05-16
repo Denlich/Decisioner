@@ -31,4 +31,9 @@ input[type="search"] {
 .rightPart {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+}
+
+.mr15 {
+  margin-right: 15px;
 }

@@ -1,7 +1,7 @@
 import styles from "./index.module.css";
 
 interface Props {
-  children: string;
+  children: React.ReactNode;
 }
 
 const index = ({ children }: Props) => {

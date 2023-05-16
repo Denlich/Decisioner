@@ -6,23 +6,8 @@
   justify-content: center;
 }
 
-.form > .inputBox > fieldset {
-  border-radius: 10px;
-  border: 2px solid #F5F8FB;
-  margin: 0;
-  padding: 0;
-}
-
 .form > .inputBox > fieldset > legend {
   margin-left: 10px;
-}
-
-.form > .inputBox > fieldset > input {
-  width: 100%;
-  background-color: #fff;
-  border: none;
-  padding: 15px;
-  border-radius: 10px;
 }
 
 .form > .inputBox > fieldset > input:focus {

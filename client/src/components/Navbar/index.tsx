@@ -6,14 +6,9 @@ import {
   MdOutlinePerson,
   MdOutlineLogout,
 } from "react-icons/md";
-import Button from "../Button";
 
 import styles from "./index.module.css";
 import authStore from "../../stores/authStore";
-
-const handleClick = () => {
-  alert("Hello world!");
-};
 
 const index = () => {
   return (

@@ -5,6 +5,7 @@ import Layout from "../components/Layout";
 import PrivateRoutes from "./PrivateRoutes";
 import LoginPage from "../pages/AuthPages/LoginPage";
 import RegistrationPage from "../pages/AuthPages/RegistrationPage";
+import PollCreate from "../pages/PollCreate";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
         children: [
           { path: "/", element: <HomePage /> },
           { path: "/polls/:id", element: <PollDetailsPage /> },
+          { path: "/polls/create", element: <PollCreate /> },
         ],
       },
     ],
