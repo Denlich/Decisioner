@@ -1,6 +1,6 @@
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { z } from "zod";
 import Button from "../Button";
 import Text from "../Text";
@@ -8,7 +8,8 @@ import APIClient from "../../services/api-client";
 
 import styles from "./index.module.css";
 import User from "../../entities/User";
-import tokenStore from "../../stores/tokenStore";
+import InputBox from "./InputBox";
+import authStore from "../../stores/authStore";
 
 const schema = z.object({
   nickname: z.string().min(3),
@@ -30,35 +31,39 @@ const AuthorizationForm = () => {
 
   const onSubmit = async (data: FieldValues) => {
     try {
-      const response = await apiClient.login(data);
-      tokenStore.getState().setToken(response.token);
+      const response = await apiClient.auth(data);
+      authStore.getState().login(response.token);
     } catch (err) {
       console.log(err);
     }
   };
 
+  const isAuth = authStore.getState().isAuthenticated;
+
+  if (isAuth) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles.inputBox}>
-        <Text>Nickname:</Text>
-        <input
-          {...register("nickname")}
-          id="nickname"
-          type="text"
-          placeholder="Write nickname"
-        />
-        {errors.nickname && <Text color="red">{errors.nickname.message}</Text>}
-      </div>
-      <div className={styles.inputBox}>
-        <Text>Password:</Text>
-        <input
-          {...register("password")}
-          id="password"
-          type="password"
-          placeholder="Write password"
-        />
-        {errors.password && <Text color="red">{errors.password.message}</Text>}
-      </div>
+      <InputBox
+        register={register("nickname")}
+        id="nickname"
+        type="text"
+        placeholder="Write your nickname"
+        errors={errors}
+      >
+        Nickname
+      </InputBox>
+      <InputBox
+        register={register("password")}
+        id="password"
+        type="password"
+        placeholder="Write your password"
+        errors={errors}
+      >
+        Password
+      </InputBox>
       <div>
         <Button color="#0066F1">Увійти</Button>
       </div>

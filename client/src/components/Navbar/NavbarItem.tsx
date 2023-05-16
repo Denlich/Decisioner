@@ -7,7 +7,7 @@ interface Props {
   to?: To;
   styles: CSSModuleClasses;
   children: String;
-  onClick?: () => {};
+  onClick?: () => void;
 }
 
 const NavbarItem = ({ icon: Icon, to, styles, children, onClick }: Props) => {

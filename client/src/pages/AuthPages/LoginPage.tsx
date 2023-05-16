@@ -6,12 +6,6 @@ import LeftPart from "./LeftPart";
 import styles from "./index.module.css";
 
 const LoginPage = () => {
-  const isAuth = authStore.getState().isAuthenticated;
-
-  if (isAuth) {
-    return <Navigate to="/" />;
-  }
-
   return (
     <div className={styles.grid}>
       <LeftPart />
