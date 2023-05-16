@@ -1,5 +1,7 @@
 import axios from "axios";
 import { FieldValues } from "react-hook-form";
+import tokenStore from "../stores/tokenStore";
+import Variant from "../entities/Variant";
 
 interface AuthResponse<T> {
   token: string;
@@ -8,6 +10,14 @@ interface AuthResponse<T> {
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:8080/api",
+});
+
+axiosInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers["Authorization"] = `Bearer ${token}`;
+  }
+  return config;
 });
 
 class APIClient<T> {
@@ -31,6 +41,14 @@ class APIClient<T> {
     return axiosInstance
       .post<AuthResponse<T>>(this.endpoint, params)
       .then((res) => res.data);
+  };
+
+  create = (params: {
+    title: string;
+    subtitle: string;
+    variants: Variant[];
+  }) => {
+    return axiosInstance.post<T>(this.endpoint, params).then((res) => res.data);
   };
 }
 

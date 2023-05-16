@@ -1,7 +1,11 @@
+.grid {
+  display: grid;
+  row-gap: 15px;
+}
+
 .row {
   display: flex;
   align-items: center;
-  margin-block: 15px
 }
 
 .row > p {
@@ -10,4 +14,34 @@
 
 .pb25 {
   padding-block: 25px
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  background-color: #F5F8FB;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.input {
+  border: 2px solid #F5F8FB;
+  border-radius: 10px;
+  padding: 15px
+}
+
+.variantInput {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding-left: 15px;
+}
+
+.variantRow {
+  display: flex;
+  align-items: center;
+}
+
+.variantRow > p {
+  margin-left: 25px;
 }

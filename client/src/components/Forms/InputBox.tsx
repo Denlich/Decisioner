@@ -9,7 +9,7 @@ interface Props {
   type: string;
   placeholder: string;
   register: UseFormRegisterReturn;
-  errors: FieldErrors;
+  errors?: FieldErrors;
 }
 
 const InputBox = ({
@@ -28,11 +28,13 @@ const InputBox = ({
         </legend>
         <input {...register} id={id} type={type} placeholder={placeholder} />
       </fieldset>
-      {errors[id] && (
-        <Text color="red" style={{ fontSize: "12px" }}>
-          {errors[id]?.message}
-        </Text>
-      )}
+      {errors
+        ? errors[id] && (
+            <Text color="red" style={{ fontSize: "12px" }}>
+              {errors[id]?.message}
+            </Text>
+          )
+        : null}
     </div>
   );
 };

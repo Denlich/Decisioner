@@ -2,9 +2,9 @@ import Heading from "../../components/Heading";
 import Button from "../../components/Button";
 import { BsPencil, BsPlus } from "react-icons/bs";
 import Text from "../../components/Text";
+import Variant from "../../entities/Variant";
 
 import styles from "./index.module.css";
-import Variant from "../../entities/Variant";
 
 interface Props {
   heading: string;

@@ -9,7 +9,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <header className={styles.row}>
+    <header className={styles.row} style={{ marginBottom: "25px" }}>
       <div className={styles.right}>
         <Button
           onClick={() => navigate("/")}
