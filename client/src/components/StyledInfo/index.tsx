@@ -5,7 +5,7 @@ import styles from "./index.module.css";
 
 interface Props {
   icon: IconType;
-  children: string | number;
+  children: React.ReactNode;
 }
 
 const index = ({ icon: Icon, children }: Props) => {

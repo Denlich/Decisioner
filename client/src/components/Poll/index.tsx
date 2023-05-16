@@ -1,9 +1,14 @@
 import { useState } from "react";
 import Variant from "./Variant";
+import Varinat from "../../entities/Variant";
 
 import styles from "./index.module.css";
 
-const index = () => {
+interface Props {
+  variants: Varinat[];
+}
+
+const index = ({ variants }: Props) => {
   const [isActive, setActive] = useState<string>();
 
   const handleClick = (id: string) => {
@@ -12,15 +17,16 @@ const index = () => {
 
   return (
     <div className={styles.poll}>
-      <Variant isActive={isActive} setActive={handleClick} key={"123"} id={"1"}>
-        Varinat 1
-      </Variant>
-      <Variant isActive={isActive} setActive={handleClick} key={"122"} id={"2"}>
-        Varinat 2
-      </Variant>
-      <Variant isActive={isActive} setActive={handleClick} key={"133"} id={"3"}>
-        Varinat 3
-      </Variant>
+      {variants.map((variant, index) => (
+        <Variant
+          isActive={isActive}
+          setActive={handleClick}
+          id={variant._id}
+          key={index}
+        >
+          {variant.text}
+        </Variant>
+      ))}
     </div>
   );
 };

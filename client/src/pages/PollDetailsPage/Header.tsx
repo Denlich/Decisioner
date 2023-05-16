@@ -1,11 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { BsArrowLeft, BsBookmark } from "react-icons/bs";
 import Button from "../../components/Button";
-
-import styles from "./index.module.css";
 import Subheading from "../../components/GridCard/Subheading";
 
-const Header = () => {
+import styles from "./index.module.css";
+
+interface Props {
+  _id: string;
+}
+
+const Header = ({ _id }: Props) => {
   const navigate = useNavigate();
   return (
     <header className={styles.row}>
@@ -16,7 +20,7 @@ const Header = () => {
           bg="grey"
           color="#0066F1"
         />
-        <Subheading>#123</Subheading>
+        <Subheading>#{_id}</Subheading>
       </div>
       <Button onClick={() => {}} icon={BsBookmark} />
     </header>
