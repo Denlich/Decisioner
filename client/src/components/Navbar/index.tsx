@@ -9,6 +9,7 @@ import {
 import Button from "../Button";
 
 import styles from "./index.module.css";
+import authStore from "../../stores/authStore";
 
 const handleClick = () => {
   alert("Hello world!");
@@ -38,7 +39,11 @@ const index = () => {
         </NavbarItem>
       </li>
       <li>
-        <NavbarItem styles={styles} icon={MdOutlineLogout} to="/">
+        <NavbarItem
+          styles={styles}
+          icon={MdOutlineLogout}
+          onClick={() => authStore.getState().logout()}
+        >
           Sign out
         </NavbarItem>
       </li>

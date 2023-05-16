@@ -1,8 +1,8 @@
 import styles from "./index.module.css";
 
 interface Props {
-  color?: "black" | "white" | "grey" | "blue";
-  children: React.ReactNode;
+  color?: "black" | "white" | "grey" | "blue" | "red";
+  children: any;
   style?: React.CSSProperties;
 }
 

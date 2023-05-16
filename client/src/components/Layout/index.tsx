@@ -6,13 +6,13 @@ import styles from "./index.module.css";
 
 const index = () => {
   return (
-    <>
+    <div className={styles.container}>
       <Header />
       <div className={styles.main}>
         <Navbar />
         <Outlet />
       </div>
-    </>
+    </div>
   );
 };
 

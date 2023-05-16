@@ -1,0 +1,31 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+  padding:25px;
+  justify-content: center;
+}
+
+.form > .inputBox > input {
+  background-color: #fff;
+  border: 2px solid #F5F8FB;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.form > .inputBox > input:focus {
+  outline: none;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputBox > p {
+  margin-bottom: 10px;
+}
+
+.form > p > a {
+  color: #0066F1
+}

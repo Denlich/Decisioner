@@ -4,16 +4,17 @@ import type { IconType } from "react-icons/lib/esm/iconBase";
 
 interface Props {
   icon: IconType;
-  to: To;
+  to?: To;
   styles: CSSModuleClasses;
   children: String;
+  onClick?: () => {};
 }
 
-const NavbarItem = ({ icon: Icon, to, styles, children }: Props) => {
+const NavbarItem = ({ icon: Icon, to, styles, children, onClick }: Props) => {
   return (
-    <div className={styles.navbarItem}>
+    <div className={styles.navbarItem} onClick={onClick}>
       <Icon size={18} />
-      <Link to={to}>{children}</Link>
+      <Link to={to!}>{children}</Link>
     </div>
   );
 };

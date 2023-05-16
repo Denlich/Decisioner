@@ -6,7 +6,7 @@ import styles from "./index.module.css";
 interface Props {
   children?: React.ReactNode;
   icon?: IconType;
-  onClick: () => void;
+  onClick?: () => void;
   bg?: "blue" | "grey" | "green" | "red" | "white";
   color?: "white" | "#0066F1" | "#666";
 }
