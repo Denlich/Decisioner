@@ -1,9 +1,11 @@
 import Poll from "../../entities/Poll";
 import Header from "./Header";
+import Title from "./Title";
 import Text from "../Text";
 
 import styles from "./index.module.css";
-import Title from "./Title";
+import Footer from "./Footer";
+import { Link } from "react-router-dom";
 
 interface Props {
   poll: Poll;
@@ -12,12 +14,14 @@ interface Props {
 const index = ({ poll }: Props) => {
   return (
     <div className={styles.container}>
-      <Header id={poll._id} />
-      <Title>{poll.title}</Title>
-      <Text color="grey">{poll.subtitle}</Text>
-      <footer>
-        <Text>Some user</Text>
-      </footer>
+      <Link to={`/polls/${poll._id}`}>
+        <Header id={poll._id} />
+      </Link>
+      <Title date={poll.createdAt}>{poll.title}</Title>
+      <Text color="grey" style={{ wordBreak: "break-all" }}>
+        {poll.subtitle}
+      </Text>
+      <Footer nickname={poll.user.nickname} viewsCount={poll.viewsCount} />
     </div>
   );
 };

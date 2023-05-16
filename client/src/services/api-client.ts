@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:8080/api",
@@ -16,7 +16,9 @@ class APIClient<T> {
   };
 
   get = (id: string) => {
-    return axios.get<T[]>(this.endpoint + "/" + id).then((res) => res.data);
+    return axiosInstance
+      .get<T>(this.endpoint + "/" + id)
+      .then((res) => res.data);
   };
 }
 

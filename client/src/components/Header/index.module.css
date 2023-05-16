@@ -1,12 +1,13 @@
-header {
+.header {
   display: grid;
   align-items: center;
   grid-template-columns: 1fr 3fr 1fr;
   column-gap: 15px;
-  padding-block: 15px;
+  padding-block-end: 25px;
+  background-color: #F5F8FB;
 }
 
-form {
+.form {
   display: flex;
   width: 100%;
   border-radius: 15px;

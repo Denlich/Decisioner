@@ -4,7 +4,7 @@ import styles from "./index.module.css";
 
 const SearchBox = () => {
   return (
-    <form>
+    <form className={styles.form}>
       <button className={styles.button} type="submit">
         <BsSearch />
       </button>

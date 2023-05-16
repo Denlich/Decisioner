@@ -3,17 +3,16 @@ import Header from "../Header";
 import Navbar from "../Navbar";
 
 import styles from "./index.module.css";
-import colours from "../../colours";
 
 const index = () => {
   return (
-    <div style={{ marginInline: "50px" }}>
+    <>
       <Header />
-      <div className={styles.main} style={{ background: colours.lightGrey }}>
+      <div className={styles.main}>
         <Navbar />
         <Outlet />
       </div>
-    </div>
+    </>
   );
 };
 

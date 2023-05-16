@@ -1,14 +1,13 @@
-interface Varinats {
-  text: string;
-  votes: number;
-}
+import User from "./User";
+import Variant from "./Variant";
 
 export default interface Poll {
   _id: string;
   title: string;
   subtitle: string;
-  vaiants: Varinats[];
-  user_id: string;
+  variants: Variant[];
+  user: User;
   isAcitve: boolean;
-  viewCount: number;
+  viewsCount: number;
+  createdAt: Date;
 }

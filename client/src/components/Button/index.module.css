@@ -1,0 +1,30 @@
+.button {
+  padding: 15px;
+  border: 0;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.blue {
+  background-color: #0066F1;
+}
+
+.white {
+  background-color: #FFFFFF;
+}
+
+.green {
+  background-color: #00C792;
+}
+
+.grey {
+  background-color: #F5F8FB;
+}
+
+.red {
+  background-color: #E12626;
+}

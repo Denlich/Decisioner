@@ -1,7 +1,7 @@
 import styles from "./index.module.css";
 
 interface Props {
-  children: string;
+  children: string | string[];
 }
 
 const Subheading = ({ children }: Props) => {
