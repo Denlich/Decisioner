@@ -78,15 +78,12 @@ export const remove = async (req, res) => {
 
 export const update = async (req, res) => {
   try {
-    const { title, subtitle, variants, isActive } = req.body;
+    const { isActive } = req.body;
     const pollId = req.params.id;
 
     await pollModel.findOneAndUpdate(
       { _id: pollId },
       {
-        title,
-        subtitle,
-        variants,
         user: req.userId,
         isActive,
       }

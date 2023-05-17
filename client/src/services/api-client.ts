@@ -49,6 +49,12 @@ class APIClient<T> {
   }) => {
     return axiosInstance.post<T>(this.endpoint, params).then((res) => res.data);
   };
+
+  update = (id: string, params: { isActive: boolean }) => {
+    return axiosInstance
+      .patch<T>(this.endpoint + "/" + id, params)
+      .then((res) => res.data);
+  };
 }
 
 export default APIClient;

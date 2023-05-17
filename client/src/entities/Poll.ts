@@ -7,7 +7,7 @@ export default interface Poll {
   subtitle: string;
   variants: Variant[];
   user: User;
-  isAcitve: boolean;
+  isActive: boolean;
   viewsCount: number;
   createdAt: Date;
 }

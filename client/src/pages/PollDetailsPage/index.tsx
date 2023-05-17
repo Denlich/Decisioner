@@ -4,15 +4,24 @@ import Text from "../../components/Text";
 import Poll from "../../components/Poll";
 import Button from "../../components/Button";
 import { useParams } from "react-router-dom";
+import usePoll from "../../hooks/usePoll";
+import jwtDecode from "jwt-decode";
 
 import styles from "./index.module.css";
-import usePoll from "../../hooks/usePoll";
+import { useEffect, useState } from "react";
 
 const PollDetailsPage = () => {
   const { id } = useParams();
-  console.log(id);
   const { data, isLoading, error } = usePoll(id!);
-  console.log(data);
+  const [isOwner, setOwner] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decodedToken: { _id: string } = jwtDecode(token);
+      setOwner(decodedToken._id === data?.user._id);
+    }
+  }, [data]);
 
   if (isLoading) {
     return <h1>Loading</h1>;
@@ -22,7 +31,7 @@ const PollDetailsPage = () => {
 
   return (
     <div className={styles.container}>
-      <Header _id={data._id} />
+      <Header _id={data._id} isActive={data.isActive} isOwner={isOwner} />
       <PollHeading
         title={data.title}
         date={data.createdAt}
