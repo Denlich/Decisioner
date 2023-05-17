@@ -55,6 +55,12 @@ class APIClient<T> {
       .patch<T>(this.endpoint + "/" + id, params)
       .then((res) => res.data);
   };
+
+  delete = (id: string) => {
+    return axiosInstance
+      .delete<T>(this.endpoint + "/" + id)
+      .then((res) => res.data);
+  };
 }
 
 export default APIClient;

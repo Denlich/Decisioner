@@ -28,6 +28,13 @@ const Header = ({ _id, isOwner }: Props) => {
       .catch((err) => console.log(err.message));
   };
 
+  const handleDelete = () => {
+    const confirmDelete = window.confirm("Are you sure you want to delete?");
+    if (confirmDelete) {
+      apiClient.delete(_id).then(() => navigate("/"));
+    }
+  };
+
   return (
     <header className={styles.row}>
       <div className={styles.right}>
@@ -46,7 +53,7 @@ const Header = ({ _id, isOwner }: Props) => {
               {active ? "Close poll" : "Open"}
             </Button>
           </div>
-          <Button onClick={() => {}} icon={BsTrash} bg="red" />
+          <Button onClick={handleDelete} icon={BsTrash} bg="red" />
         </div>
       ) : null}
     </header>
