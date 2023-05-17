@@ -65,7 +65,9 @@ const AuthorizationForm = () => {
         Password
       </InputBox>
       <div>
-        <Button color="#0066F1">Увійти</Button>
+        <Button type="submit" color="#0066F1">
+          Увійти
+        </Button>
       </div>
       <Text color="grey">
         Ще немає аккаунту? <Link to="/registration">Реєстрація</Link>

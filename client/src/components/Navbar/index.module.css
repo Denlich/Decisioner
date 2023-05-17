@@ -19,7 +19,7 @@ ul {
   margin-left: 10px;
 }
 
-li:nth-child(5),
-li:nth-child(5) > .navbarItem > a {
-  color: #E12626
+li:nth-child(4) > .navbarItem > svg,
+li:nth-child(4) > .navbarItem > a {
+  color: #E12626!important
 }

@@ -85,7 +85,7 @@ const RegistrationForm = () => {
         Password
       </InputBox>
       <div>
-        <Button onClick={() => {}} color="#0066F1">
+        <Button type="submit" color="#0066F1">
           Register
         </Button>
       </div>

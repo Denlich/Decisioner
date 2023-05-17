@@ -1,6 +1,5 @@
 import axios from "axios";
 import { FieldValues } from "react-hook-form";
-import tokenStore from "../stores/tokenStore";
 import Variant from "../entities/Variant";
 
 interface AuthResponse<T> {
