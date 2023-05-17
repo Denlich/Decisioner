@@ -61,6 +61,12 @@ class APIClient<T> {
       .delete<T>(this.endpoint + "/" + id)
       .then((res) => res.data);
   };
+
+  vote = (id: string, variantId: string) => {
+    return axiosInstance
+      .post<T>(this.endpoint + "/" + id + "/" + variantId)
+      .then((res) => res.data);
+  };
 }
 
 export default APIClient;

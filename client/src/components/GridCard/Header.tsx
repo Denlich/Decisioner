@@ -9,7 +9,6 @@ interface Props {
 }
 
 const Header = ({ id, isActive }: Props) => {
-  console.log(isActive);
   return (
     <div className={styles.row}>
       <Subheading>#{id.substring(0, 10)}</Subheading>

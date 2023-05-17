@@ -1,4 +1,4 @@
-import { BsCheck } from "react-icons/bs";
+import { BsCheck, BsEye } from "react-icons/bs";
 import Button from "../Button";
 import Text from "../Text";
 
@@ -8,24 +8,36 @@ interface Props {
   children: string;
   isActive?: string;
   setActive?: (p: string) => void;
-  id: string;
+  id?: string;
+  votes?: number;
+  isResults?: boolean;
 }
 
-const Variant = ({ children, isActive, setActive, id }: Props) => {
+const Variant = ({
+  children,
+  isActive,
+  setActive,
+  id,
+  votes,
+  isResults = false,
+}: Props) => {
   return (
     <div className={styles.variant}>
-      <Button
-        onClick={setActive ? () => setActive(id) : () => {}}
-        color={isActive === id ? "#0066F1" : "#666"}
-        bg="white"
-        icon={BsCheck}
-      />
-      <Text
-        color={isActive === id ? "blue" : "grey"}
-        style={{ paddingLeft: "15px" }}
-      >
-        {children}
-      </Text>
+      <div className={styles.block}>
+        <Button
+          onClick={setActive ? () => setActive(id!) : () => {}}
+          color={isActive === id || isResults ? "#0066F1" : "#666"}
+          bg="white"
+          icon={!isResults ? BsCheck : BsEye}
+        />
+        <Text
+          color={isActive === id ? "blue" : "grey"}
+          style={{ paddingLeft: "15px" }}
+        >
+          {children}
+        </Text>
+      </div>
+      {isResults && <Text style={{ marginRight: "15px" }}>{votes}</Text>}
     </div>
   );
 };

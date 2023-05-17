@@ -1,6 +1,6 @@
 import pollModel from "../models/poll-model.js";
 
-export const vote = async (id, variant, userId) => {
+export const vote = async (id, variantId, userId) => {
   const poll = await pollModel.findOne({ _id: id });
 
   if (!poll) {
@@ -15,13 +15,17 @@ export const vote = async (id, variant, userId) => {
     throw new Error("User already voted");
   }
 
+  const variantIndex = poll.variants.findIndex(
+    (variant) => String(variant._id) === variantId
+  );
+
   const result = await pollModel.updateOne(
     { _id: id, voted_users: { $ne: userId } },
     {
       $push: { voted_users: userId },
-      $inc: { ["variants." + variant + ".votes"]: 1 },
+      $inc: { [`variants.${variantIndex}.votes`]: 1 },
     }
   );
 
-  return { message: "Success" };
+  return result;
 };

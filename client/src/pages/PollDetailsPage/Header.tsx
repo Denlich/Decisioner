@@ -20,18 +20,18 @@ const Header = ({ _id, isOwner }: Props) => {
   const navigate = useNavigate();
   const [active, setActive] = useState(true);
 
-  const handleUpdatePoll = () => {
+  const handleUpdatePoll = async () => {
     const updateActive = !active;
-    apiClient
+    await apiClient
       .update(_id, { isActive: updateActive })
       .then(() => setActive(updateActive))
       .catch((err) => console.log(err.message));
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     const confirmDelete = window.confirm("Are you sure you want to delete?");
     if (confirmDelete) {
-      apiClient.delete(_id).then(() => navigate("/"));
+      await apiClient.delete(_id).then(() => navigate("/"));
     }
   };
 

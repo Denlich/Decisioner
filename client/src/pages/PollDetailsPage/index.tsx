@@ -1,27 +1,56 @@
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 import Header from "./Header";
 import PollHeading from "./PollHeading";
 import Text from "../../components/Text";
 import Poll from "../../components/Poll";
 import Button from "../../components/Button";
-import { useParams } from "react-router-dom";
 import usePoll from "../../hooks/usePoll";
-import jwtDecode from "jwt-decode";
+import APIClient from "../../services/api-client";
+import Variant from "../../entities/Variant";
 
 import styles from "./index.module.css";
-import { useEffect, useState } from "react";
+
+const apiClient = new APIClient<Variant>("/polls");
 
 const PollDetailsPage = () => {
   const { id } = useParams();
   const { data, isLoading, error } = usePoll(id!);
   const [isOwner, setOwner] = useState(false);
+  const [isActive, setActive] = useState("");
+  const [submitError, setError] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const decodedToken: { _id: string } = jwtDecode(token);
-      setOwner(decodedToken._id === data?.user._id);
+    if (data) {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const decodedToken: { _id: string } = jwtDecode(token);
+        setOwner(decodedToken._id === data?.user._id);
+      }
     }
-  }, [data]);
+  }, []);
+
+  const handleClick = (id: string) => {
+    setActive(id);
+  };
+
+  const handleSubmit = async (id: string, variantId: string) => {
+    try {
+      if (isActive) {
+        await apiClient.vote(id, variantId);
+        navigate(`/polls/${id}`);
+      } else throw new Error("Choose variant");
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred");
+      }
+    }
+  };
 
   if (isLoading) {
     return <h1>Loading</h1>;
@@ -41,8 +70,19 @@ const PollDetailsPage = () => {
       <div className={styles.subtitle}>
         <Text color="grey">{data.subtitle}</Text>
       </div>
-      <Poll variants={data.variants} />
-      <Button onClick={() => {}}>Vote</Button>
+      {!data.voted_users.includes(data.user._id) ? (
+        <>
+          <Poll
+            isActive={isActive!}
+            handleClick={handleClick}
+            variants={data.variants}
+          />
+          <Button onClick={() => handleSubmit(id!, isActive)}>Vote</Button>
+        </>
+      ) : (
+        <Poll variants={data.variants} isResults={true} />
+      )}
+      {submitError && <Text color="red">{submitError}</Text>}
     </div>
   );
 };
