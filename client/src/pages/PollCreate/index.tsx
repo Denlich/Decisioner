@@ -43,8 +43,8 @@ const index = () => {
         throw new Error(
           "Title should be at least 1 and less than 50 characters"
         );
-      if (subtitle.length > 50)
-        throw new Error("Subitle should be at least 1less than 50 characters");
+      if (subtitle.length > 500)
+        throw new Error("Subitle should be at least 1less than 500 characters");
       if (variants.length < 2) {
         throw new Error("Poll must contain at least 2 varinats");
       }

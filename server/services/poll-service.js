@@ -23,7 +23,7 @@ export const vote = async (id, variantId, userId) => {
     { _id: id, voted_users: { $ne: userId } },
     {
       $push: { voted_users: userId },
-      $inc: { [`variants.${variantIndex}.votes`]: 1 },
+      $inc: { [`variants.${variantIndex}.votes`]: 1, votes: 1 },
     }
   );
 
