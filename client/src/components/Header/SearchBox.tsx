@@ -22,11 +22,7 @@ const SearchBox = () => {
       <button className={styles.button} type="submit">
         <BsSearch />
       </button>
-      <input
-        ref={searchRef}
-        type="search"
-        placeholder="Search for the person or the poll"
-      />
+      <input ref={searchRef} type="search" placeholder="Search for the poll" />
     </form>
   );
 };

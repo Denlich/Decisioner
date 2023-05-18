@@ -1,5 +1,15 @@
 import pollModel from "../models/poll-model.js";
 
+export const getAll = async (search) => {
+  const searchParam = new RegExp(search, "i");
+  const polls = await pollModel
+    .find(search ? { title: { $regex: searchParam } } : {})
+    .populate("user", "-password")
+    .sort({ viewsCount: -1 });
+
+  return polls;
+};
+
 export const vote = async (id, variantId, userId) => {
   const poll = await pollModel.findOne({ _id: id });
 

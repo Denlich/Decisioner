@@ -4,22 +4,8 @@ import * as PollService from "../services/poll-service.js";
 export const getAll = async (req, res) => {
   try {
     const { search } = req.query;
-    let polls;
-
-    if (search) {
-      const searchParam = new RegExp(search, "i");
-      polls = await pollModel
-        .find({ title: { $regex: searchParam } })
-        .populate("user", "-password")
-        .sort({ viewsCount: -1 });
-    } else {
-      polls = await pollModel
-        .find()
-        .populate("user", "-password")
-        .sort({ viewsCount: -1 });
-    }
-
-    return res.status(200).json(polls);
+    const result = await PollService.getAll(search);
+    return res.status(200).json(result);
   } catch (err) {
     console.log(err);
     return res.status(500).json(err.message);
