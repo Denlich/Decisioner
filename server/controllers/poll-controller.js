@@ -3,8 +3,10 @@ import * as PollService from "../services/poll-service.js";
 
 export const getAll = async (req, res) => {
   try {
+    const { search } = req.params;
+    const searchParam = new RegExp(search, "i");
     const polls = await pollModel
-      .find()
+      .find({ title: { $regex: searchParam } })
       .populate("user", "-password")
       .sort({ viewsCount: -1 });
     return res.status(200).json(polls);
