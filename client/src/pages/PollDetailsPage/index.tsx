@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import jwtDecode from "jwt-decode";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import Header from "./Header";
 import PollHeading from "./PollHeading";
 import Text from "../../components/Text";
@@ -11,22 +10,17 @@ import APIClient from "../../services/api-client";
 import Variant from "../../entities/Variant";
 
 import styles from "./index.module.css";
+import useGetMe from "../../hooks/useGetMe";
 
 const apiClient = new APIClient<Variant>("/polls");
 
 const PollDetailsPage = () => {
   const { id } = useParams();
   const { data, isLoading, error } = usePoll(id!);
-  const [isOwner, setOwner] = useState(false);
+  const { data: user } = useGetMe();
+  const isOwner = user?._id === data?.user._id;
   const [isActive, setActive] = useState("");
   const [submitError, setError] = useState("");
-
-  const token = localStorage.getItem("token");
-  const decodedToken: { _id: string } = jwtDecode(token!);
-
-  useEffect(() => {
-    setOwner(decodedToken._id === data?.user._id);
-  }, [data]);
 
   const handleClick = (id: string) => {
     setActive(id);
@@ -66,7 +60,7 @@ const PollDetailsPage = () => {
       <div className={styles.subtitle}>
         <Text color="grey">{data.subtitle}</Text>
       </div>
-      {!data.voted_users.includes(decodedToken._id) && data.isActive ? (
+      {!data.voted_users.includes(user?._id!) && data.isActive ? (
         <>
           <Poll
             isActive={isActive!}

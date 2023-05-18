@@ -36,6 +36,10 @@ class APIClient<T> {
       .then((res) => res.data);
   };
 
+  getMe = () => {
+    return axiosInstance.get<T>(this.endpoint).then((res) => res.data);
+  };
+
   auth = (params: FieldValues) => {
     return axiosInstance
       .post<AuthResponse<T>>(this.endpoint, params)
