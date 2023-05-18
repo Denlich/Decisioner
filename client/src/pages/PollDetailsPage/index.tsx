@@ -20,19 +20,13 @@ const PollDetailsPage = () => {
   const [isOwner, setOwner] = useState(false);
   const [isActive, setActive] = useState("");
   const [submitError, setError] = useState("");
-  const [voted, setVoted] = useState(false);
 
-  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const decodedToken: { _id: string } = jwtDecode(token!);
 
   useEffect(() => {
-    if (data) {
-      const token = localStorage.getItem("token");
-      if (token) {
-        const decodedToken: { _id: string } = jwtDecode(token);
-        setOwner(decodedToken._id === data?.user._id);
-      }
-    }
-  }, []);
+    setOwner(decodedToken._id === data?.user._id);
+  }, [data]);
 
   const handleClick = (id: string) => {
     setActive(id);
@@ -41,8 +35,9 @@ const PollDetailsPage = () => {
   const handleSubmit = async (id: string, variantId: string) => {
     try {
       if (isActive) {
-        await apiClient.vote(id, variantId).then(() => setVoted(true));
-        navigate(`/polls/${id}`);
+        await apiClient
+          .vote(id, variantId)
+          .then(() => window.location.reload());
       } else throw new Error("Choose variant");
     } catch (err) {
       if (err instanceof Error) {
@@ -71,7 +66,7 @@ const PollDetailsPage = () => {
       <div className={styles.subtitle}>
         <Text color="grey">{data.subtitle}</Text>
       </div>
-      {!data.voted_users.includes(data.user._id) || voted ? (
+      {!data.voted_users.includes(decodedToken._id) ? (
         <>
           <Poll
             isActive={isActive!}
