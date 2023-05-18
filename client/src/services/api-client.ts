@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { FieldValues } from "react-hook-form";
 import Variant from "../entities/Variant";
 
@@ -26,8 +26,10 @@ class APIClient<T> {
     this.endpoint = endpoint;
   }
 
-  getAll = () => {
-    return axiosInstance.get<T[]>(this.endpoint).then((res) => res.data);
+  getAll = (config: AxiosRequestConfig) => {
+    return axiosInstance
+      .get<T[]>(this.endpoint, config)
+      .then((res) => res.data);
   };
 
   get = (id: string) => {
@@ -40,9 +42,9 @@ class APIClient<T> {
     return axiosInstance.get<T>(this.endpoint).then((res) => res.data);
   };
 
-  auth = (params: FieldValues) => {
+  auth = (config: AxiosRequestConfig) => {
     return axiosInstance
-      .post<AuthResponse<T>>(this.endpoint, params)
+      .post<AuthResponse<T>>(this.endpoint, config)
       .then((res) => res.data);
   };
 
@@ -54,9 +56,9 @@ class APIClient<T> {
     return axiosInstance.post<T>(this.endpoint, params).then((res) => res.data);
   };
 
-  update = (id: string, params: { isActive: boolean }) => {
+  update = (id: string, config: AxiosRequestConfig) => {
     return axiosInstance
-      .patch<T>(this.endpoint + "/" + id, params)
+      .patch<T>(this.endpoint + "/" + id, config)
       .then((res) => res.data);
   };
 

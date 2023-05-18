@@ -24,7 +24,7 @@ router.post(
 );
 router.get("/me", checkAuth, UserController.getMe);
 
-router.get("/polls/:search", PollController.getAll);
+router.get("/polls", PollController.getAll);
 router.get("/polls/:id", PollController.getOne);
 router.post("/polls", checkAuth, pollValidation, PollController.createPoll);
 router.post("/polls/:id/:variant", checkAuth, PollController.vote);

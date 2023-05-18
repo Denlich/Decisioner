@@ -31,7 +31,7 @@ const AuthorizationForm = () => {
 
   const onSubmit = async (data: FieldValues) => {
     try {
-      const response = await apiClient.auth(data);
+      const response = await apiClient.auth({ ...data });
       authStore.getState().login(response.token);
     } catch (err) {
       console.log(err);
