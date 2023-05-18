@@ -25,7 +25,7 @@ const Variant = ({
 }: Props) => {
   const percent = Number(((votes! * 100) / results!).toFixed(0));
   const gradientStyle = {
-    background: `linear-gradient(90deg, rgba(0, 199, 146, 0.2) ${percent}%, #F5F8FB ${
+    background: `linear-gradient(to right, rgba(0, 199, 146, 0.2) 0%, rgba(0, 199, 146, 0.2) ${percent}%, #F5F8FB ${percent}% ,#F5F8FB ${
       100 - percent
     }%)`,
   };
