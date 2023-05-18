@@ -16,15 +16,18 @@ interface Props {
 
 const apiClient = new APIClient<Poll>("/polls");
 
-const Header = ({ _id, isOwner }: Props) => {
+const Header = ({ _id, isActive, isOwner }: Props) => {
   const navigate = useNavigate();
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(isActive);
 
   const handleUpdatePoll = async () => {
     const updateActive = !active;
     await apiClient
       .update(_id, { isActive: updateActive })
-      .then(() => setActive(updateActive))
+      .then(() => {
+        setActive(updateActive);
+        window.location.reload();
+      })
       .catch((err) => console.log(err.message));
   };
 
@@ -46,7 +49,8 @@ const Header = ({ _id, isOwner }: Props) => {
         />
         <Subheading>#{_id}</Subheading>
       </div>
-      {isOwner ? (
+      {!isActive && <Subheading color="grey">Poll is closed</Subheading>}
+      {isOwner && (
         <div className={styles.row}>
           <div className={styles.mr10}>
             <Button onClick={handleUpdatePoll}>
@@ -55,7 +59,7 @@ const Header = ({ _id, isOwner }: Props) => {
           </div>
           <Button onClick={handleDelete} icon={BsTrash} bg="red" />
         </div>
-      ) : null}
+      )}
     </header>
   );
 };

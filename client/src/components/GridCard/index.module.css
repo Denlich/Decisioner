@@ -16,7 +16,6 @@
 
 .h2 {
   font-family: 'Nunit', sans-serif;
-  color: #00C792;
   font-weight: 400;
   margin: 0;
   padding: 0;
@@ -31,4 +30,12 @@
   justify-content: space-between;
   margin-top: auto;
   padding-top: 15px;
+}
+
+.green {
+  color: #00C792;
+}
+
+.grey {
+  color: #666;
 }

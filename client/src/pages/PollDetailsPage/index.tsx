@@ -66,7 +66,7 @@ const PollDetailsPage = () => {
       <div className={styles.subtitle}>
         <Text color="grey">{data.subtitle}</Text>
       </div>
-      {!data.voted_users.includes(decodedToken._id) ? (
+      {!data.voted_users.includes(decodedToken._id) && data.isActive ? (
         <>
           <Poll
             isActive={isActive!}
