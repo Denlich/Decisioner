@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding: 25px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.user {
+  width: 150px;
+  height: 150px;
+  border: 2px solid #F5F8FB
+}
+
+.info {
+  margin-left: 15px
+}
