@@ -22,6 +22,7 @@ router.post(
   handleValidationErrors,
   UserController.login
 );
+router.get("/me", checkAuth, UserController.getMe);
 
 router.get("/polls", PollController.getAll);
 router.get("/polls/:id", PollController.getOne);
