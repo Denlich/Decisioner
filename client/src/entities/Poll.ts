@@ -10,5 +10,6 @@ export default interface Poll {
   isActive: boolean;
   viewsCount: number;
   voted_users: string[];
+  votes: number;
   createdAt: Date;
 }

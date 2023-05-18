@@ -20,6 +20,7 @@ const PollDetailsPage = () => {
   const [isOwner, setOwner] = useState(false);
   const [isActive, setActive] = useState("");
   const [submitError, setError] = useState("");
+  const [voted, setVoted] = useState(false);
 
   const navigate = useNavigate();
 
@@ -40,7 +41,7 @@ const PollDetailsPage = () => {
   const handleSubmit = async (id: string, variantId: string) => {
     try {
       if (isActive) {
-        await apiClient.vote(id, variantId);
+        await apiClient.vote(id, variantId).then(() => setVoted(true));
         navigate(`/polls/${id}`);
       } else throw new Error("Choose variant");
     } catch (err) {
@@ -70,7 +71,7 @@ const PollDetailsPage = () => {
       <div className={styles.subtitle}>
         <Text color="grey">{data.subtitle}</Text>
       </div>
-      {!data.voted_users.includes(data.user._id) ? (
+      {!data.voted_users.includes(data.user._id) || voted ? (
         <>
           <Poll
             isActive={isActive!}
@@ -80,7 +81,7 @@ const PollDetailsPage = () => {
           <Button onClick={() => handleSubmit(id!, isActive)}>Vote</Button>
         </>
       ) : (
-        <Poll variants={data.variants} isResults={true} />
+        <Poll variants={data.variants} isResults={true} results={data.votes} />
       )}
       {submitError && <Text color="red">{submitError}</Text>}
     </div>

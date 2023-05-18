@@ -11,6 +11,7 @@ interface Props {
   id?: string;
   votes?: number;
   isResults?: boolean;
+  results?: number;
 }
 
 const Variant = ({
@@ -20,9 +21,20 @@ const Variant = ({
   id,
   votes,
   isResults = false,
+  results,
 }: Props) => {
+  const percent = Number(((votes! * 100) / results!).toFixed(0));
+  const gradientStyle = {
+    background: `linear-gradient(90deg, rgba(0, 199, 146, 0.2) ${percent}%, #F5F8FB ${
+      100 - percent
+    }%)`,
+  };
+
   return (
-    <div className={styles.variant}>
+    <div
+      className={styles.variant}
+      style={percent > 0 ? gradientStyle : { backgroundColor: "#F5F8FB" }}
+    >
       <div className={styles.block}>
         <Button
           onClick={setActive ? () => setActive(id!) : () => {}}
@@ -37,7 +49,7 @@ const Variant = ({
           {children}
         </Text>
       </div>
-      {isResults && <Text style={{ marginRight: "15px" }}>{votes}</Text>}
+      {isResults && <Text style={{ marginRight: "15px" }}>{percent} %</Text>}
     </div>
   );
 };

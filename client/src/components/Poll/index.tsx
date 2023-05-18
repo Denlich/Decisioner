@@ -8,9 +8,16 @@ interface Props {
   handleClick?: (id: string) => void;
   variants: Varinat[];
   isResults?: boolean;
+  results?: number;
 }
 
-const index = ({ isActive, handleClick, variants, isResults }: Props) => {
+const index = ({
+  isActive,
+  handleClick,
+  variants,
+  isResults,
+  results,
+}: Props) => {
   return (
     <div className={styles.poll}>
       {variants.map((variant, index) => (
@@ -21,6 +28,7 @@ const index = ({ isActive, handleClick, variants, isResults }: Props) => {
           key={index}
           votes={variant.votes}
           isResults={isResults}
+          results={results}
         >
           {variant.text}
         </Variant>
