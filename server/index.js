@@ -5,7 +5,7 @@ import cors from "cors";
 
 import router from "./router/router.js";
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 dotenv.config();
 
 const app = express();

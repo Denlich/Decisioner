@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { BsArrowLeft, BsBookmark, BsTrash } from "react-icons/bs";
+import { BsArrowLeft, BsTrash } from "react-icons/bs";
 import Button from "../../components/Button";
 import Subheading from "../../components/GridCard/Subheading";
 

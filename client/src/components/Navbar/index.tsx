@@ -1,7 +1,6 @@
 import NavbarItem from "./NavbarItem";
 import {
   MdOutlineHome,
-  MdOutlineInventory2,
   MdOutlinePerson,
   MdOutlineLogout,
 } from "react-icons/md";
@@ -13,11 +12,6 @@ const index = () => {
       <li>
         <NavbarItem icon={MdOutlineHome} to="/">
           All polls
-        </NavbarItem>
-      </li>
-      <li>
-        <NavbarItem icon={MdOutlineInventory2} to="/my-polls">
-          My polls
         </NavbarItem>
       </li>
       <li>

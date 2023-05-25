@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { FieldValues } from "react-hook-form";
 import Variant from "../entities/Variant";
 
 interface AuthResponse<T> {
@@ -8,7 +7,7 @@ interface AuthResponse<T> {
 }
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: "http://localhost:8081/api",
 });
 
 axiosInstance.interceptors.request.use((config) => {
@@ -56,7 +55,7 @@ class APIClient<T> {
     return axiosInstance.post<T>(this.endpoint, params).then((res) => res.data);
   };
 
-  update = (id: string, config: AxiosRequestConfig) => {
+  update = (id: string, config: { isActive: boolean }) => {
     return axiosInstance
       .patch<T>(this.endpoint + "/" + id, config)
       .then((res) => res.data);
