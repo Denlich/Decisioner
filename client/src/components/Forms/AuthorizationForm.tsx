@@ -10,6 +10,7 @@ import styles from "./index.module.css";
 import User from "../../entities/User";
 import InputBox from "./InputBox";
 import authStore from "../../stores/authStore";
+import { useState } from "react";
 
 const schema = z.object({
   nickname: z.string().min(3),
@@ -21,6 +22,7 @@ const apiClient = new APIClient<User>("/login");
 type FormData = z.infer<typeof schema>;
 
 const AuthorizationForm = () => {
+  const [error, setError] = useState("");
   const {
     register,
     handleSubmit,
@@ -35,6 +37,7 @@ const AuthorizationForm = () => {
       authStore.getState().login(response.token);
     } catch (err) {
       console.log(err);
+      setError("User doesn't existe!");
     }
   };
 
@@ -66,12 +69,13 @@ const AuthorizationForm = () => {
       </InputBox>
       <div>
         <Button type="submit" color="#0066F1">
-          Увійти
+          Log in
         </Button>
       </div>
       <Text color="grey">
-        Ще немає аккаунту? <Link to="/registration">Реєстрація</Link>
+        Don't have an account? <Link to="/registration">Registration</Link>
       </Text>
+      {error && <Text color="red">{error}</Text>}
     </form>
   );
 };
