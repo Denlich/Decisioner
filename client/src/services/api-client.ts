@@ -7,7 +7,7 @@ interface AuthResponse<T> {
 }
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8081/api",
+  baseURL: import.meta.env.VITE_BASE_URL,
 });
 
 axiosInstance.interceptors.request.use((config) => {
